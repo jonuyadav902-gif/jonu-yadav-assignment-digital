@@ -8,7 +8,9 @@ module tb_Seq_div_5_Mealy;
         .rst(rst),
         .din(din),
         .rangdetect(rangdetect)
+    );
 
+   
     always #5 clk = ~clk;
 
     initial begin
