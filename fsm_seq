@@ -1,0 +1,41 @@
+module Seq_div_5_Mealy (
+    input  clk,
+    input  rst,
+    input  din,
+    output reg rangdetect
+);
+
+    parameter A = 3'b000;
+    parameter B = 3'b001;
+    parameter C = 3'b010;
+    parameter D = 3'b011;
+    parameter E = 3'b100;
+
+    reg [2:0] ps, ns;
+    always @(posedge clk) begin
+        if (rst)
+            ps <= A;
+        else
+            ps <= ns;
+    end
+    
+    always @(*) begin
+        case (ps)
+            A: ns = din ? B : A;
+            B: ns = din ? D : C;
+            C: ns = din ? A : E;
+            D: ns = din ? C : B;
+            E: ns = din ? E : D;
+            default: ns = A;
+        endcase
+    end
+
+   
+    always @(posedge clk) begin
+        if (rst)
+            rangdetect <= 1'b0;
+        else
+            rangdetect <= ( (ns == A));
+    end
+
+endmodule
