@@ -18,15 +18,11 @@ module tb_Seq_div_5_Mealy;
         rst = 1;
         din = 0;
 
-        #10 rst = 0;
-
-        // Apply 1010 (decimal 10)
+        #10 rst = 0; 
         @(posedge clk) din = 1;
         @(posedge clk) din = 0;
         @(posedge clk) din = 1;
-        @(posedge clk) din = 0; // 👈 rangdetect = 1 here
-
-        // Extra bits
+        @(posedge clk) din = 0; 
         @(posedge clk) din = 0;
         @(posedge clk) din = 0;
 
