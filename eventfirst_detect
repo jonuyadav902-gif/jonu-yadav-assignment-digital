@@ -1,0 +1,23 @@
+module event_detector(
+input clk,
+input rst,
+input event_,
+output reg data_out
+    );
+    
+    reg captured;
+    always @(posedge clk)
+    begin
+    if(rst)begin 
+    captured <= 1'b0;
+    data_out <= 1'b0;
+    end
+    else if (event_ && !captured)begin
+     captured <= 1'b1;
+    data_out <= 1'b1;
+    end
+    else begin
+    data_out <= 1'b0;
+    end
+    end
+endmodule
