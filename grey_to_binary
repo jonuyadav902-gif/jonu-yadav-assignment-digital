@@ -1,0 +1,10 @@
+module gray_to_binary(
+input [3:0] g, //grey
+output [3:0] binary
+    );
+     wire i2;
+    wire i3;
+    assign i2  = g[3] ^ g[2];
+    assign i3  = i2 ^ g[1];
+    assign binary  = {g[3],i2,i3,i3 ^ g[0]};
+endmodule
