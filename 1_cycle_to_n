@@ -1,0 +1,38 @@
+module pulse_5x (
+    input  clk,
+    input  rst,
+    input  pulse_in,
+    output reg pulse_out
+);
+
+    reg [3:0] count;
+    reg running; // matlab module busy h avhi kamm kar rha h
+
+    always @(posedge clk) begin
+        if (rst) begin
+            count     <= 0;
+            running   <= 0;
+            pulse_out <= 0;
+        end
+        else if (pulse_in && !running) begin
+            running   <= 1;
+            count     <= 0;
+            pulse_out <= 1;
+        end
+        else if (running) begin
+            count <= count + 1;
+
+            // pulse out ko clock ke form me convert karne ke liye 
+            pulse_out <= ~pulse_out;
+            //cont 9 karne me 10 cycle lagagi yani 5 pulses
+            if (count == 9) begin
+                running   <= 0;
+                pulse_out <= 0;
+                count     <= 0;
+            end
+        end
+        else begin
+            pulse_out <= 0;
+        end
+    end
+endmodule
