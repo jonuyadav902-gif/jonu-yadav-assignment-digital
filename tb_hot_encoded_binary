@@ -1,0 +1,21 @@
+module tb_hot_data_binary();
+reg [7:0] hot_data_in;
+wire [2:0]  binary_out;
+hot_encoded_to_binary dut (hot_data_in,binary_out);
+initial
+begin
+hot_data_in = 8'b00000000;
+end
+
+initial
+begin
+#10;
+hot_data_in = 8'b10000000;
+#10;
+hot_data_in = 8'b01000000;
+#10;
+hot_data_in = 8'b001000000;
+#80 $finish;
+end
+
+endmodule
