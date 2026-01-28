@@ -1,0 +1,16 @@
+module hot_encoded_to_binary(
+input [7:0] hot_data_in,
+output reg [2:0] binary_out
+    );
+    reg [2:0] index;
+    integer m;
+    always @(*)
+    begin
+     binary_out = 3'b000;
+    for (m = 0;m<8; m = m+1)
+    if(hot_data_in[m] == 1'b1 )
+   binary_out = m[2:0]; 
+     
+    end
+    
+endmodule
