@@ -1,0 +1,28 @@
+module tb_barrel_shift();
+reg [15:0] data_in;
+reg [3:0] controlsign;
+reg logshift;
+reg arithshift;
+wire [15:0] data_out;
+Barrel_shifter dut (data_in,controlsign,logshift, arithshift,data_out);
+initial
+begin
+{data_in, controlsign,logshift,arithshift}=0;
+end
+initial
+begin
+#10;
+data_in = 16'hb;
+controlsign = 4'b0001;
+logshift = 1'b0;
+arithshift = 1'b0;
+#10
+logshift = 1'b1;
+arithshift = 1'b0;
+#10
+logshift = 1'b0;
+arithshift = 1'b1;
+
+#10
+logshift = 1'b1;
+arithshift = 1'b1;
