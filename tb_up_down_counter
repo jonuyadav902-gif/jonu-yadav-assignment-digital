@@ -1,0 +1,21 @@
+module tb_up_down_counter();
+reg clk,rst , enb;
+wire [3:0] count ;
+up_down_counter dut (clk,rst,enb,count);
+initial 
+begin 
+clk  = 1'b0;
+rst = 1'b1;
+enb = 1'b0;
+end
+always #5 clk = ~clk;
+
+initial
+begin
+#10 rst = 1'b0;
+#160 enb = 1;        
+    #160 enb = 0;        
+    #160 enb = 1;        
+
+    #4000 $finish;
+end
