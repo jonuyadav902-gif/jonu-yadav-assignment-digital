@@ -1,0 +1,11 @@
+module comparator(
+input [7:0] a ,
+input [7:0] b ,
+output equal,greater,less
+
+    );
+    assign  equal = ~|(a^b);
+    assign greater = a>b;
+    assign less = a<b;   
+       
+endmodule
