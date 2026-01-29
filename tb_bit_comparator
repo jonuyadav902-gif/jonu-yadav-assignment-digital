@@ -1,0 +1,14 @@
+module tb_compartor();
+reg [7:0] a;
+reg [7:0] b;
+wire equal,greater,less ;
+comparator dut (a,b,equal,greater,less);
+initial
+begin
+a = 8'b00000011;
+b = 8'b00000011;
+#10;
+a = 8'b00000001;
+b = 8'b00000010;
+end
+endmodule
